@@ -91,3 +91,9 @@ GymPass style app.
   - Não compromete sua máquina
   - Simplesmente tem o contexto com as ferramentas que funciona
 - E pronto, você não tem seu computador pessoal contaminado com dependencias de banco, ferramentas, etc;
+- `docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql`
+  - 5432:5432 -> quando porta 5432 do postgres (esquerda) ser ligada na porta 5432 da minha maquina (direita)
+  - parâmetros -e são para passar as variaveis ambiente para criar user, password e database
+  - `docker ps` = mostra todos containers ativos
+  - `docker ps -a` = mostra todos os containers, mesmo inativos 
+  - `docker rm <nome-do-container>` = deleta 
