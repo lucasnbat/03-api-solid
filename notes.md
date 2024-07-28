@@ -58,3 +58,16 @@ GymPass style app.
 - Crie o .eslintrc.json colocando o eslint-config desejado em extends;
 - No .prettierrc você coloca as config desejadas. Para es2020 é   "trailingComma": "all"
 - Adicione um script para formatar lá no package.json: `"format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"`
+
+### Configuração de alias de importação
+
+- No seu tsconfig.json...
+
+  > "baseUrl": "./", /* Specify the base directory to resolve non-relative module names. */
+  >    "paths": {
+  >      "@/*": [
+  >        "./src/*"
+  >      ]
+  >    }, /* Specify a set of entries that re-map imports to >additional lookup locations. */
+
+- 
