@@ -31,7 +31,7 @@ GymPass style app.
 - [ ] Todas listas de dados devem estar paginadas com 20 items por página; 
 - [ ] O usuário deve ser identificado por um JWT (Json Web Token);
   
-# Construção 
+# Configuração 
 
 ## Instalações iniciais
 
@@ -71,3 +71,14 @@ GymPass style app.
   >    }, /* Specify a set of entries that re-map imports to >additional lookup locations. */
 
 - Setup completo.
+
+# Construção do App
+
+## Prisma
+
+- `npx prisma init`  = cria o prisma/schema.prisma
+- Um @ configura um campo, dois @ são configs de tabelas;
+- Existe além do uuid() com cuid() (um uuid mais curto)
+- uuid() = mais segurança para gerar rotas impossível de conseguir acessar outro recurso mudando o id na url
+- `npx prisma generate`: gera os tipos para o TS entender que existe as tabelas do prisma. Ele gera um tipo "User" referente à sua tabela User; além disso, gera os metodos findUnique, etc;
+- `npm i @prisma/client`: dependeica de produção, usada para ACESSAR o banco (prismaClient)
