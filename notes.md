@@ -51,3 +51,10 @@ GymPass style app.
 - `"start:dev": "tsx watch src/server.ts"` = script para compilar o codigo js para ts em produção e ficar vigiando mudanças; (DEV)
 - `"build": "tsup src --out-dir build"` = script para gerar build do codigo ts para js numa pasta "build" (PRODUÇÃO)
 - `"start": "node build/server.js"` = script para iniciar o código diretamente com node na pasta build (PRODUÇÃO)
+
+### Config prettier/eslint
+
+- `npm install --save-dev eslint prettier eslint-plugin-prettier eslint-config-prettier` 
+- Crie o .eslintrc.json colocando o eslint-config desejado em extends;
+- No .prettierrc você coloca as config desejadas. Para es2020 é   "trailingComma": "all"
+- Adicione um script para formatar lá no package.json: `"format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"`
