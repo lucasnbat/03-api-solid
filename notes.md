@@ -82,3 +82,12 @@ GymPass style app.
 - uuid() = mais segurança para gerar rotas impossível de conseguir acessar outro recurso mudando o id na url
 - `npx prisma generate`: gera os tipos para o TS entender que existe as tabelas do prisma. Ele gera um tipo "User" referente à sua tabela User; além disso, gera os metodos findUnique, etc;
 - `npm i @prisma/client`: dependeica de produção, usada para ACESSAR o banco (prismaClient)
+
+## Docker
+
+- Criar um ambiente com dados de forma que, se não precisar mais dele, você simplesmente mata esse ambiente;
+  - Ele não precisa criar os SO
+  - Ele funciona em qualquer SO
+  - Não compromete sua máquina
+  - Simplesmente tem o contexto com as ferramentas que funciona
+- E pronto, você não tem seu computador pessoal contaminado com dependencias de banco, ferramentas, etc;
