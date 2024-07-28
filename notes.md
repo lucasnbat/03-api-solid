@@ -70,4 +70,4 @@ GymPass style app.
   >      ]
   >    }, /* Specify a set of entries that re-map imports to >additional lookup locations. */
 
-- 
+- Setup completo.
