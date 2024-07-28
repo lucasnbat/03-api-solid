@@ -100,3 +100,7 @@ GymPass style app.
 - `docker compose up -d` para criar os containers a partir de um docker-compose da aplicação
 - `docker compose down` delete TODOS CONTAINERS E SEUS DADOS
 - `docker compose stop` só para os containers
+
+### Prosseguindo
+
+- `npx prisma migrate deploy`: só aplica direto as migrations existentes
