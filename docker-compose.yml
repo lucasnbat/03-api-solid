@@ -1,0 +1,14 @@
+# isso cria o comando de docker necessário para subir todos os containers necessários para a aplicação
+# docker compose up -d para rodar
+
+version: '3'
+
+services: 
+  api-solid-pg: 
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=apisolid

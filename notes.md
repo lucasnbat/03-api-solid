@@ -97,3 +97,6 @@ GymPass style app.
   - `docker ps` = mostra todos containers ativos
   - `docker ps -a` = mostra todos os containers, mesmo inativos 
   - `docker rm <nome-do-container>` = deleta 
+- `docker compose up -d` para criar os containers a partir de um docker-compose da aplicação
+- `docker compose down` delete TODOS CONTAINERS E SEUS DADOS
+- `docker compose stop` só para os containers
