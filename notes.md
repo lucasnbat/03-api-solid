@@ -101,6 +101,13 @@ GymPass style app.
 - `docker compose down` delete TODOS CONTAINERS E SEUS DADOS
 - `docker compose stop` só para os containers
 
-### Prosseguindo
+## Prosseguindo
 
 - `npx prisma migrate deploy`: só aplica direto as migrations existentes
+
+## Relacionamentos
+
+- 1 - 1 = um dado se relaciona apeans com um unico dado de outra, isso poderia estar na mesma tabela mas pode ser separado;
+- 1 - N = um dado pode relacionar com varios de outra tabela (1 usuário - Vários checkins)
+- N - N = uma dado pode ter associação a varios dados de outra tabela e essa tabela pode ter dado com vários dados da inicial associados;
+
