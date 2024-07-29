@@ -111,3 +111,8 @@ GymPass style app.
 - 1 - N = um dado pode relacionar com varios de outra tabela (1 usuário - Vários checkins)
 - N - N = uma dado pode ter associação a varios dados de outra tabela e essa tabela pode ter dado com vários dados da inicial associados;
 
+## Hash de senhas e validações
+
+- npm i bcryptjs
+- npm i bcryptjs -D @types/bcryptjs
+
