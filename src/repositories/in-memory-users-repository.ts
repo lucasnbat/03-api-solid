@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from '@prisma/client'
 
 /*
  * UserCreateInput é um tipo do arquivo nativo
@@ -6,9 +6,9 @@ import { Prisma } from "@prisma/client";
  * dev
  */
 export class inMemoryUserRepository {
-  public users: any[] = [];
+  public users: any[] = []
 
   async create(data: Prisma.UserCreateInput) {
-    this.users.push(data);
+    this.users.push(data)
   }
 }

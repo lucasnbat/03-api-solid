@@ -1,11 +1,11 @@
-import { prisma } from "@/lib/prisma";
-import { PrismaUsersRepository } from "@/repositories/prisma-users-repository";
-import { hash } from "bcryptjs";
+import { prisma } from '@/lib/prisma'
+import { PrismaUsersRepository } from '@/repositories/prisma-users-repository'
+import { hash } from 'bcryptjs'
 
 interface RegisterUseCaseRequest {
-  name: string;
-  email: string;
-  password: string;
+  name: string
+  email: string
+  password: string
 }
 
 /* Isso é tipo o service */
@@ -19,24 +19,24 @@ export async function registerUseCase({
    * vai ser "re-hashada" para criar o hash do hash,
    * e o hash do hash do hash...
    */
-  const passord_hash = await hash(password, 6);
+  const passord_hash = await hash(password, 6)
 
   const userWithSameEmail = await prisma.user.findUnique({
     where: {
       email,
     },
-  });
+  })
 
   if (userWithSameEmail) {
-    throw new Error("E-mail already exists");
+    throw new Error('E-mail already exists')
   }
 
   /* Isso... é o service do service kkk */
-  const prismaUserRepository = new PrismaUsersRepository();
+  const prismaUserRepository = new PrismaUsersRepository()
 
   prismaUserRepository.create({
     name,
     email,
     passord_hash,
-  });
+  })
 }
