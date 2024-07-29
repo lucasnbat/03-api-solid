@@ -4,8 +4,8 @@
  * passar por aqui
  */
 
-import { prisma } from '@/lib/prisma';
-import { Prisma } from '@prisma/client';
+import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 /*
  * UserCreateInput é um tipo do arquivo nativo

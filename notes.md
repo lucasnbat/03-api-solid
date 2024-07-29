@@ -116,3 +116,9 @@ GymPass style app.
 - npm i bcryptjs
 - npm i bcryptjs -D @types/bcryptjs
 
+## Vantagens do Repository Pattern
+
+- Isso isola os códigos de prisma para os repositórios.
+- Se você quiser mudar futuramente,de ORM, você só vai precisar
+  mexer nos repositórios;
+- 
