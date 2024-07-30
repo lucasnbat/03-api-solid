@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { RegisterUseCase } from '@/use-cases/register'
-import { PrismaUsersRepository } from '@/repositories/prisma-users-repository'
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -13,7 +13,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   const { name, email, password } = registerBodySchema.parse(request.body)
 
   try {
-    /* Instancia a maquinaria que mexe com o banco */
+    /* Instancia a maquinaria que mexe com o banco. Ele que envia as dep. do Prisma */
     const prismaUsersRepository = new PrismaUsersRepository()
 
     /* Instancia a classe que possui a lógica para pegar a maquinaria separada

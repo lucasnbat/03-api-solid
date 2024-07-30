@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { UsersRepository } from '@/repositories/users-repository'
 import { hash } from 'bcryptjs'
 
 /**
@@ -15,7 +16,7 @@ interface RegisterUseCaseRequest {
 }
 
 export class RegisterUseCase {
-  constructor(private usersRepository: any) {}
+  constructor(private usersRepository: UsersRepository) {}
 
   /* você poderia deixar que nem o código abaixo se quiser.
    * Fiz na versão resumida que dá na mesma.
