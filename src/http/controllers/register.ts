@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { registerUseCase } from '@/use-cases/register'
+import { RegisterUseCase } from '@/use-cases/register'
+import { PrismaUsersRepository } from '@/repositories/prisma-users-repository'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -12,7 +13,16 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   const { name, email, password } = registerBodySchema.parse(request.body)
 
   try {
-    await registerUseCase({
+    /* Instancia a maquinaria que mexe com o banco */
+    const prismaUsersRepository = new PrismaUsersRepository()
+
+    /* Instancia a classe que possui a lógica para pegar a maquinaria separada
+     * e acionar o método create dessa maquinaria passando os parâmetros;
+     * O acionamento do create() é feito dentro da função execute()
+     */
+    const registerUseCase = new RegisterUseCase(prismaUsersRepository)
+
+    await registerUseCase.execute({
       name,
       email,
       password,
