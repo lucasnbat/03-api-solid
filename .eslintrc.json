@@ -6,7 +6,8 @@
     "camelcase": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-useless-constructor": "off",
-    "no-unused-vars":"off",
-    "prettier/prettier": "off"
+    "no-unused-vars": "off",
+    "prettier/prettier": "off",
+    "@typescript-eslint/no-unused-vars": "off"
   }
 }
