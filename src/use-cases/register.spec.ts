@@ -1,6 +1,9 @@
 import { expect, describe, it } from 'vitest'
 import { RegisterUseCase } from './register';
 import { compare } from 'bcryptjs';
+import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
+import { UserAlreadyExistsError } from './errors/user-already-exists-error';
+
 
 /**
  * Isso é um teste unitário, que não depende de outras 
@@ -12,22 +15,24 @@ import { compare } from 'bcryptjs';
  */
 
 describe('Register Use Case', () => {
-  it('should hash user password upon registration', async () => {
-    const registerUseCase = new RegisterUseCase({
-      async findByEmail(email) {
-        return null
-      },
+  it('should be able to register', async () => {
+    const usersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(usersRepository);
 
-      async create(data){
-        return {
-          id: 'user-1',
-          name: data.name,
-          email: data.email,
-          passord_hash: data.passord_hash,
-          created_at: new Date(),
-        }
-      },
-    });
+    const { user } = await registerUseCase.execute({
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: '123456'
+    })
+
+    /* Espero que o id retornado seja igual a qualquer string */
+    expect(user.id).toEqual(expect.any(String))
+
+  })
+
+  it('should hash user password upon registration', async () => {
+    const usersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(usersRepository);
 
     const { user } = await registerUseCase.execute({
       name: 'John Doe',
@@ -44,5 +49,29 @@ describe('Register Use Case', () => {
 
     expect(isPasswordCorrectlyHashed).toBe(true)
 
+  })
+
+  it('should not be able to register with same email twice', async () => {
+    const usersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(usersRepository);
+
+    const email = 'mario@example.com'
+
+    await registerUseCase.execute({
+      name: 'Mario',
+      email,
+      password: '123456'
+    })
+
+    /* Espero que essa promise rejeite e que o resultado seja
+     * uma instancia da classe UserAlreadyExistsError 
+    */
+    expect(() => 
+       registerUseCase.execute({
+        name: 'Mario',
+        email,
+        password: '123456'
+      })
+    ).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })
 })
