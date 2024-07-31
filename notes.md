@@ -121,4 +121,10 @@ GymPass style app.
 - Isso isola os códigos de prisma para os repositórios.
 - Se você quiser mudar futuramente,de ORM, você só vai precisar
   mexer nos repositórios;
-- 
+
+## Testes
+
+- `npm i vitest -D`
+- `npm i vitest-tsconfig-paths -D` => plugin para vitest entender nossos rootPaths do tsconfig
+- Adicione esses dois scripts ao package.json: `"test": "vitest run", "test:watch": "vitest",`
+  - O vitest run apenas executa os testes e para. O vitest sem run fica observando mudanças e dispara os testes a cada nova mudança
