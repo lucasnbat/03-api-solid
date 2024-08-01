@@ -128,4 +128,10 @@ GymPass style app.
 - `npm i vitest-tsconfig-paths -D` => plugin para vitest entender nossos rootPaths do tsconfig
 - Adicione esses dois scripts ao package.json: `"test": "vitest run", "test:watch": "vitest",`
   - O vitest run apenas executa os testes e para. O vitest sem run fica observando mudanças e dispara os testes a cada nova mudança
-  - 
+
+## Cobertura de testes
+
+- Insira esse script no package.json:`"test:coverage": "vitest run --coverage",`
+- Ao rodar vai criar uma pasta /coverage/ que vai ter um index.html
+  - Ao abrir esse index.html, você vai ver um gráfico de quanto % os arquivos foram cobertos. Foque nos que você está testando;
+- UI do Vitest: npm i -D @vitest/ui

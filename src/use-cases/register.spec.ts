@@ -65,8 +65,9 @@ describe('Register Use Case', () => {
 
     /* Espero que essa promise rejeite e que o resultado seja
      * uma instancia da classe UserAlreadyExistsError 
+     * await deve ser usado antes do expect sempre que dentro dele tiver uma promise
     */
-    expect(() => 
+    await expect(() => 
        registerUseCase.execute({
         name: 'Mario',
         email,
