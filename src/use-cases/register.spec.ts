@@ -60,12 +60,13 @@ describe('Register Use Case', () => {
      * uma instancia da classe UserAlreadyExistsError
      * await deve ser usado antes do expect sempre que dentro dele tiver uma promise
      */
-    await expect(() =>
-      sut.execute({
-        name: 'Mario',
-        email,
-        password: '123456',
-      }),
+    await expect(
+      async () =>
+        await sut.execute({
+          name: 'Mario',
+          email,
+          password: '123456',
+        }),
     ).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })
 })

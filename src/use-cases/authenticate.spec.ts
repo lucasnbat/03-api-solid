@@ -48,7 +48,7 @@ describe('Authenticate Use Case', () => {
      */
     // const sut = new AuthenticateUseCase(usersRepository)
 
-    expect(async () => {
+    await expect(async () => {
       await sut.execute({
         email: 'johndoe@example.com',
         password: '123456',
@@ -78,7 +78,7 @@ describe('Authenticate Use Case', () => {
     })
 
     /* Testando entrar com uma senha diferente */
-    expect(async () => {
+    await expect(async () => {
       await sut.execute({
         email: 'johndoe@example.com',
         password: '123457',
