@@ -1,5 +1,5 @@
-import { Prisma, User } from "@prisma/client";
-import { UsersRepository } from "../users-repository";
+import { Prisma, User } from '@prisma/client'
+import { UsersRepository } from '../users-repository'
 
 /* Representação do UsersRepository para testes feito em JS puro */
 export class InMemoryUsersRepository implements UsersRepository {

@@ -1,14 +1,14 @@
 import { expect, describe, it } from 'vitest'
-import { RegisterUseCase } from './register';
-import { compare, hash } from 'bcryptjs';
-import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
-import { UserAlreadyExistsError } from './errors/user-already-exists-error';
-import { AuthenticateUseCase } from './authenticate';
-import { InvalidCredentialsError } from './errors/invalid-credentials-error';
+import { RegisterUseCase } from './register'
+import { compare, hash } from 'bcryptjs'
+import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
+import { UserAlreadyExistsError } from './errors/user-already-exists-error'
+import { AuthenticateUseCase } from './authenticate'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 describe('Authenticate Use Case', () => {
   it('should be able to authenticate', async () => {
-    const usersRepository = new InMemoryUsersRepository();
+    const usersRepository = new InMemoryUsersRepository()
     // const authenticateUseCase = new AuthenticateUseCase(usersRepository);
     // sut = system under test (o authenticateUseCase)
     const sut = new AuthenticateUseCase(usersRepository)
@@ -16,7 +16,7 @@ describe('Authenticate Use Case', () => {
     await usersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      passord_hash: await hash('123456', 6)
+      passord_hash: await hash('123456', 6),
     })
 
     const { user } = await sut.execute({
@@ -28,13 +28,13 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should not be able to authenticate with wrong email', async () => {
-    /* 
-     * instancia o rep. com a ferramenta a ser 
-     * usada para manipular banco (no caso, JS puro) 
+    /*
+     * instancia o rep. com a ferramenta a ser
+     * usada para manipular banco (no caso, JS puro)
      */
-    const usersRepository = new InMemoryUsersRepository();
+    const usersRepository = new InMemoryUsersRepository()
 
-    /* 
+    /*
      * Instancia o caso de uso que vai utilizar a
      * ferramenta para cumprir a regra de negócio
      */
@@ -43,19 +43,19 @@ describe('Authenticate Use Case', () => {
     expect(async () => {
       await sut.execute({
         email: 'johndoe@example.com',
-        password: '123456'
+        password: '123456',
       })
     }).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
   it('should not be able to authenticate with wrong password', async () => {
-    /* 
-     * instancia o rep. com a ferramenta a ser 
-     * usada para manipular banco (no caso, JS puro) 
+    /*
+     * instancia o rep. com a ferramenta a ser
+     * usada para manipular banco (no caso, JS puro)
      */
-    const usersRepository = new InMemoryUsersRepository();
+    const usersRepository = new InMemoryUsersRepository()
 
-    /* 
+    /*
      * Instancia o caso de uso que vai utilizar a
      * ferramenta para cumprir a regra de negócio
      */
@@ -66,14 +66,14 @@ describe('Authenticate Use Case', () => {
     await usersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      passord_hash: await hash('123456', 6)
+      passord_hash: await hash('123456', 6),
     })
 
     /* Testando entrar com uma senha diferente */
     expect(async () => {
       await sut.execute({
         email: 'johndoe@example.com',
-        password: '123457'
+        password: '123457',
       })
     }).rejects.toBeInstanceOf(InvalidCredentialsError)
   })

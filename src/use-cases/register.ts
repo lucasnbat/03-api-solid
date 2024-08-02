@@ -34,7 +34,11 @@ export class RegisterUseCase {
    */
 
   /* Isso é tipo o service */
-  async execute({ name, email, password }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
+  async execute({
+    name,
+    email,
+    password,
+  }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     /*
      * O round é o número que vai dentro do hash()
      * Basicamente é quantidade de vezes que a senha
@@ -55,7 +59,7 @@ export class RegisterUseCase {
       passord_hash,
     })
 
-    return {user}
+    return { user }
 
     /*
      * Como estava antes
