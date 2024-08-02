@@ -7,7 +7,7 @@ GymPass style app.
 - [x] Deve ser possível se cadastrar;
 - [x] Deve ser possível se autenticar;
 - [x] Deve ser possível obter o perfil de um usuário logado;
-- [ ] Deve ser possível obter número de check-ins realizados pelo usuário logado;
+- [x] Deve ser possível obter número de check-ins realizados pelo usuário logado;
 - [ ] Deve ser possível usuário obter seu histórico de check-ins;
 - [ ] Deve ser possível usuário buscar academias próximas;
 - [ ] Deve ser possível usuário buscar academias pelo nome;
@@ -142,3 +142,13 @@ GymPass style app.
 - PrismaUsersRep é um repositório que contém a regra da regra de negócio. Ele faz as op. que o register.ts diz usando a sintaxe e ferramentas do Prisma. O motivo dele existir é para concentrar as lógicas de Prisma em apenas um arquivo facilmente substituível por outro caso necessário; poderia ser SequelizeUsersRep, etc;
 - UsersRep é apenas o arquivo que tipa o PrismaUsersRep ou qualquer outro arquivo que concentra regras para falar com uma certa ferramenta como knex.js, TypeORM, Sequelize, etc;
 - Conceitos usados até o momento: Inversão de Dependência (SOLID); Factorys (Creation Design Pattern) 
+
+## TDD -> Test Driven Development
+
+- Se você desenvolve o teste de uma regra de negócio, antes de implementar o teste ajuda a validar se a implementação funciona ou não;
+- Etapas:
+  - Red State: erro not teste, vemos que o app não funciona já como esperado; faça testes unitários específicos;
+  - Green State: faço funcionar com o mínimo de código;
+  - Refactoring: reescrever da forma correta;
+- Mocking de datas: datas fictícias para testes
+  - Vitest utiliza vi.useFakeTimers()
