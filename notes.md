@@ -18,7 +18,7 @@ GymPass style app.
 ## RNs (Regras de negócio)
 
 - [x] Usuário não deve poder se cadastrar com e-mail duplicado;
-- [ ] Usuário não deve poder fazer 2 check-ins no mesmo dia;
+- [x] Usuário não deve poder fazer 2 check-ins no mesmo dia;
 - [ ] Usuário não deve poder fazer check-ins se não estiver perto (100m) da academia;
 - [ ] Check-in só deve poder ser validado até 20 minutos após criado;
 - [ ] Check-in só deve poder ser validado por administradores;
@@ -152,3 +152,4 @@ GymPass style app.
   - Refactoring: reescrever da forma correta;
 - Mocking de datas: datas fictícias para testes
   - Vitest utiliza vi.useFakeTimers()
+- `npm i dayjs`: biblioteca usada na validação de checkin no mesmo dia;

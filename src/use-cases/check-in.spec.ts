@@ -42,6 +42,7 @@ describe('Register Use Case', () => {
       userId: 'user-01',
     })
 
+    /* Agora o usuário vai tentar fazer checkin no mesmo dia e deve rejeitar */
     await expect(
       async () =>
         await sut.execute({
