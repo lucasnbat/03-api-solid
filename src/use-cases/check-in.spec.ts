@@ -19,8 +19,8 @@ describe('CheckIn Use Case', () => {
       title: 'academia js',
       description: 'js',
       phone: '',
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: new Decimal(-12.5566976),
+      longitude: new Decimal(-55.7187072),
     })
 
     /* Usar datas falsas para testes */
@@ -91,6 +91,28 @@ describe('CheckIn Use Case', () => {
 
     expect(checkIn.id).toEqual(expect.any(String))
   })
+
+  it('should not be able to check in on distant gym', async () => {
+    /* Cadastro academia distante mais que 100 metros */
+    gymsRepository.items.push({
+      id: 'gym-02',
+      title: 'academia ts',
+      description: '',
+      phone: '',
+      latitude: new Decimal(-12.4518704),
+      longitude: new Decimal(55.8152667),
+    })
+
+    /* Tentando fazer checkin nessa academia estando distante mais de 100m */
+    await expect(async () => {
+      await sut.execute({
+        gymId: 'gym-02',
+        userId: 'user-01',
+        userLatitude: -12.5566976,
+        userLongitude: -55.7187072,
+      })
+    }).rejects.toBeInstanceOf(Error)
+  })
 })
 
-// -12.5566976,-55.7187072,14z?entry=ttu
+// @-12.4518704,-55.8152667,14z?entry=ttu
