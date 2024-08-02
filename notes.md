@@ -141,3 +141,4 @@ GymPass style app.
 - register.ts (RegisterUseCase) é o arquivo que contém as regras de negócio do que fazer com o banco; ele recebe uma instância de PrismaUsersRep para usar as ferramentas do prisma para realizar as op. da regra de negócio;
 - PrismaUsersRep é um repositório que contém a regra da regra de negócio. Ele faz as op. que o register.ts diz usando a sintaxe e ferramentas do Prisma. O motivo dele existir é para concentrar as lógicas de Prisma em apenas um arquivo facilmente substituível por outro caso necessário; poderia ser SequelizeUsersRep, etc;
 - UsersRep é apenas o arquivo que tipa o PrismaUsersRep ou qualquer outro arquivo que concentra regras para falar com uma certa ferramenta como knex.js, TypeORM, Sequelize, etc;
+- Conceitos usados até o momento: Inversão de Dependência (SOLID); Factorys (Creation Design Pattern) 

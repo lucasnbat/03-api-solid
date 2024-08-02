@@ -1,8 +1,7 @@
 import { z } from 'zod'
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { RegisterUseCase } from '@/use-cases/register'
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
 import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error'
+import { makeRegisterUseCase } from '@/use-cases/factories/make-register-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -15,13 +14,16 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
   try {
     /* Instancia a maquinaria que mexe com o banco. Ele que envia as dep. do Prisma */
-    const prismaUsersRepository = new PrismaUsersRepository()
+    // const prismaUsersRepository = new PrismaUsersRepository()
 
     /* Instancia a classe que possui a lógica para pegar a maquinaria separada
      * e acionar o método create dessa maquinaria passando os parâmetros;
      * O acionamento do create() é feito dentro da função execute()
      */
-    const registerUseCase = new RegisterUseCase(prismaUsersRepository)
+    // const registerUseCase = new RegisterUseCase(prismaUsersRepository)
+
+    /* Chamando função factory para instanciar meu caso de uso */
+    const registerUseCase = makeRegisterUseCase()
 
     await registerUseCase.execute({
       name,
