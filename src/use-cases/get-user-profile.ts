@@ -10,7 +10,7 @@ interface GetUserProfileUseCaseResponse {
   user: User
 }
 
-export class AuthenticateUseCase {
+export class GetUserProfileUseCase {
   constructor(
     /* 
      * PrismaUsersRep é o local onde tem todas as funções 
