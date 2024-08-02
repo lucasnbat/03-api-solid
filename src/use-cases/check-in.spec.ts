@@ -1,14 +1,27 @@
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-checkins-repository'
 import { CheckInUseCase } from './check-in'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
+import { Decimal } from '@prisma/client/runtime/library'
 
 let checkInRepository: InMemoryCheckInsRepository
+let gymsRepository: InMemoryGymsRepository
 let sut: CheckInUseCase
 
-describe('Register Use Case', () => {
+describe('CheckIn Use Case', () => {
   beforeEach(() => {
     checkInRepository = new InMemoryCheckInsRepository()
-    sut = new CheckInUseCase(checkInRepository)
+    gymsRepository = new InMemoryGymsRepository()
+    sut = new CheckInUseCase(checkInRepository, gymsRepository)
+
+    gymsRepository.items.push({
+      id: 'gym-01',
+      title: 'academia js',
+      description: 'js',
+      phone: '',
+      latitude: new Decimal(0),
+      longitude: new Decimal(0),
+    })
 
     /* Usar datas falsas para testes */
     vi.useFakeTimers()
@@ -27,9 +40,9 @@ describe('Register Use Case', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
+      userLatitude: -12.5566976,
+      userLongitude: -55.7187072,
     })
-
-    console.log('VEJA= ', checkIn)
 
     expect(checkIn.id).toEqual(expect.any(String))
   })
@@ -40,6 +53,8 @@ describe('Register Use Case', () => {
     await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
+      userLatitude: -12.5566976,
+      userLongitude: -55.7187072,
     })
 
     /* Agora o usuário vai tentar fazer checkin no mesmo dia e deve rejeitar */
@@ -48,6 +63,8 @@ describe('Register Use Case', () => {
         await sut.execute({
           gymId: 'gym-01',
           userId: 'user-01',
+          userLatitude: -12.5566976,
+          userLongitude: -55.7187072,
         }),
     ).rejects.toBeInstanceOf(Error)
   })
@@ -58,6 +75,8 @@ describe('Register Use Case', () => {
     await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
+      userLatitude: -12.5566976,
+      userLongitude: -55.7187072,
     })
 
     /* Agora vai fazer checkin em outro: precisa resolver a promise */
@@ -66,8 +85,12 @@ describe('Register Use Case', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
+      userLatitude: -12.5566976,
+      userLongitude: -55.7187072,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
   })
 })
+
+// -12.5566976,-55.7187072,14z?entry=ttu
