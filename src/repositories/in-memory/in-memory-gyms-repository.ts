@@ -19,7 +19,7 @@ export class InMemoryGymsRepository implements GymsRepository {
 
   async create(data: Prisma.GymCreateInput) {
     const gym = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       title: data.title,
       description: data.description ?? null, // ?? = se não existir, bota próximo valor
       phone: data.phone ?? null,
