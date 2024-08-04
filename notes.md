@@ -8,7 +8,7 @@ GymPass style app.
 - [x] Deve ser possível se autenticar;
 - [x] Deve ser possível obter o perfil de um usuário logado;
 - [ ] Deve ser possível obter número de check-ins realizados pelo usuário logado;
-- [ ] Deve ser possível usuário obter seu histórico de check-ins;
+- [x] Deve ser possível usuário obter seu histórico de check-ins;
 - [ ] Deve ser possível usuário buscar academias próximas;
 - [ ] Deve ser possível usuário buscar academias pelo nome;
 - [x] Deve ser possível usuário realizar check-in em uma academia;
