@@ -1,5 +1,7 @@
-import { Gym, User } from '@prisma/client'
+import { Gym, Prisma, User } from '@prisma/client'
 import { GymsRepository } from '../gyms-repository'
+import { randomUUID } from 'crypto'
+import { title } from 'process'
 
 /* Representação do UsersRepository para testes feito em JS puro */
 export class InMemoryGymsRepository implements GymsRepository {
@@ -11,6 +13,21 @@ export class InMemoryGymsRepository implements GymsRepository {
     if (!gym) {
       return null
     }
+
+    return gym
+  }
+
+  async create(data: Prisma.GymCreateInput) {
+    const gym = {
+      id: randomUUID(),
+      title: data.title,
+      description: data.description ?? null, // ?? = se não existir, bota próximo valor
+      phone: data.phone ?? null,
+      latitude: new Prisma.Decimal(data.latitude.toString()),
+      longitude: new Prisma.Decimal(data.longitude.toString()),
+    }
+
+    this.items.push(gym)
 
     return gym
   }
