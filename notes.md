@@ -7,11 +7,11 @@ GymPass style app.
 - [x] Deve ser possível se cadastrar;
 - [x] Deve ser possível se autenticar;
 - [x] Deve ser possível obter o perfil de um usuário logado;
-- [x] Deve ser possível obter número de check-ins realizados pelo usuário logado;
+- [ ] Deve ser possível obter número de check-ins realizados pelo usuário logado;
 - [ ] Deve ser possível usuário obter seu histórico de check-ins;
 - [ ] Deve ser possível usuário buscar academias próximas;
 - [ ] Deve ser possível usuário buscar academias pelo nome;
-- [ ] Deve ser possível usuário realizar check-in em uma academia;
+- [x] Deve ser possível usuário realizar check-in em uma academia;
 - [ ] Deve ser possível validar o check-in de um usuário;
 - [x] Deve ser possível cadastrar uma academia.
 
@@ -19,7 +19,7 @@ GymPass style app.
 
 - [x] Usuário não deve poder se cadastrar com e-mail duplicado;
 - [x] Usuário não deve poder fazer 2 check-ins no mesmo dia;
-- [ ] Usuário não deve poder fazer check-ins se não estiver perto (100m) da academia;
+- [x] Usuário não deve poder fazer check-ins se não estiver perto (100m) da academia;
 - [ ] Check-in só deve poder ser validado até 20 minutos após criado;
 - [ ] Check-in só deve poder ser validado por administradores;
 - [ ] Academia só deve poder ser cadastrada por administradores;
