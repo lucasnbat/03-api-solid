@@ -5,6 +5,12 @@ import { title } from 'process'
 
 /* Representação do UsersRepository para testes feito em JS puro */
 export class InMemoryGymsRepository implements GymsRepository {
+  async searchMany(query: string, page: number): Promise<Gym[]> {
+    return this.items
+      .filter((item) => item.title.includes(query))
+      .slice((page - 1) * 20, page * 20)
+  }
+
   public items: Gym[] = []
 
   async findById(id: string): Promise<Gym | null> {
