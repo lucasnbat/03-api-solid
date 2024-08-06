@@ -102,7 +102,7 @@ describe('CheckIn Use Case', () => {
       description: '',
       phone: '',
       latitude: new Decimal(-12.4518704),
-      longitude: new Decimal(55.8152667),
+      longitude: new Decimal(-55.8152667),
     })
 
     /* Tentando fazer checkin nessa academia estando distante mais de 100m */
