@@ -153,3 +153,23 @@ GymPass style app.
 - Mocking de datas: datas fictícias para testes
   - Vitest utiliza vi.useFakeTimers()
 - `npm i dayjs`: biblioteca usada na validação de checkin no mesmo dia;
+
+## Formas de autenticação
+
+- **Basic Auth**: envia credenciais do usuário em cada cabeçalho de cada requisição;
+  - Usa base64 para cifrar e decifrar dados;
+  - Cabeçalho que leva isso é o Authorization;
+  - Não usado porque:
+    - Não é muito seguro transitar credenciais em cada requisição;
+    - Fazer interceptação na requisição pode possibilitar roubar as credenciais;
+- **JWT**: envia credenciais apenas no /login, backend valida se credenciais são válidas e, se
+   sim, backend gera um token único e imutável (stateless token)
+  - stateless = não armazenado em nenhuma estrutura de persistência de dados (banco de dados)
+  - usa palavra chave ao gerar token
+    - quando vai dificil melhor, é uma string (tipo 'ahdsfjkafjk');
+  - podemos usar essa chave para decifrar o token e extrair as informações originais;
+  - como apenas o backend tem a chave, só ele pode criar tokens válidos;
+  - composição:
+    - header/cabeçalho: qual algoritmo foi usado para criar o token (hs56, rs256, rsa256, que podem inclusive usar até duas chaves);
+    - payload: qualquer informação desejada pelo usuário. Ex: sub(id), name, email...;
+    - sign/assinatura: o que o backend gera de único. Pode até haver mudanças no paysload (de id de usuário por ex), mas o backend vai validar se o sign foi ele que gerou inicialmente e vai barrar;
