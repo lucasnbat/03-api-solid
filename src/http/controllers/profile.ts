@@ -3,7 +3,7 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 
 export async function profile(request: FastifyRequest, reply: FastifyReply) {
   /* Verifica se token existe e é valido */
-  await request.jwtVerify()
+  // await request.jwtVerify()
 
   const getUserProfile = makeGetUserProfileUseCase()
 
