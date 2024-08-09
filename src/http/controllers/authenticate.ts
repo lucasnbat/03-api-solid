@@ -29,10 +29,24 @@ export async function authenticate(
 
     const authenticateUseCase = makeAuthenticateUseCase()
 
-    await authenticateUseCase.execute({
+    const { user } = await authenticateUseCase.execute({
       email,
       password,
     })
+
+    /*
+     * jwtSign: criar jwt
+     * não coloque info. sensíveis do user no payload
+     */
+    const token = await reply.jwtSign(
+      {}, // payload
+      {
+        sign: {
+          sub: user.id,
+        },
+      },
+    )
+    return reply.status(200).send({ token })
   } catch (err) {
     if (err instanceof InvalidCredentialsError) {
       return reply.status(400).send({ message: err.message }) // conflict error code
@@ -40,6 +54,4 @@ export async function authenticate(
 
     throw err
   }
-
-  return reply.status(200).send()
 }
