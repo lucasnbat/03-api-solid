@@ -2,6 +2,7 @@ import fastify from 'fastify'
 import { appRoutes } from './http/routes'
 import { ZodError } from 'zod'
 import { env } from './env'
+import fastifyJwt from '@fastify/jwt'
 
 export const app = fastify()
 
@@ -10,6 +11,12 @@ export const app = fastify()
  * termo 'register' usado pelo fastify para registar plugins
  * sim, o routes.ts com appRouter também é plugin do fastify)
  */
+
+/* Config. JWT */
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+})
+
 app.register(appRoutes)
 
 /* Usa _ quando não vai usar o parametro da função (no caso, request) */

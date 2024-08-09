@@ -173,3 +173,7 @@ GymPass style app.
     - header/cabeçalho: qual algoritmo foi usado para criar o token (hs56, rs256, rsa256, que podem inclusive usar até duas chaves);
     - payload: qualquer informação desejada pelo usuário. Ex: sub(id), name, email...;
     - sign/assinatura: o que o backend gera de único. Pode até haver mudanças no paysload (de id de usuário por ex), mas o backend vai validar se o sign foi ele que gerou inicialmente e vai barrar;
+- Você não coloca caso de uso de autenticação; 
+  - Os casos de uso são as formas mais puras da aplicação, lógicas independentes;
+- Tem módulo de JWT para fastify
+  - `npm i @fastify/jwt`
