@@ -188,3 +188,22 @@ GymPass style app.
 - Depois, no vite.config.ts, você configura quais arquivos vão usar o referido ambiente de edesenvolvimento (no caso, o nome dele é prisma)
 - vá na pasta vitest-environment-prisma e dê um `npm link` para cirar um rep local;
 - Depois volta na pasta geral do projeto e da um `npm link vitest-environment-prisma` para você conseguir rodar a configuração de ambientes que você fez rodar globalmente;
+- Geralmente não fazemos testes e2e e unitários na mesma maquina;
+  - e2e são muito mais pesados, e usamos um CI como GitHub Actions para executar
+- Logo, nos scripts, definimos um apenas para e2e e os outros ficam para testes unitários:
+  - "scripts": {
+    "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest --dir src/use-cases",
+    ...
+    "test:e2e": "vitest run --dir src/http"
+  },
+- Temos que configurar um pretest tambem para executar antes dos testes
+  - no npm, sempre o script com "pre" no inicio é executado antes dos oturos;
+  - logo:
+    - {"pretest:e2e": "run-s test:create-prisma-environment &&           test:install-prisma-environment",
+    "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
+    "test:install-prisma-environment": "npm link vitest-environment-prisma"}
+      - esse script usa o npm-run-all (lib) por meio do run-s (run sequencially) que roda o script conforme o SO usado pela maquina que está rodando o sistema;
+      - o pretest executa os dois scripts abaixo
+      - o create prisma environment faz o link com o pacote da pasta prisma (como se tivesse feito o processo de entrar na pasta e dar npm link)
+      - o install executa equivalente ao `npm link vitest-environment-prisma` para instalar o pacote globalmente;
