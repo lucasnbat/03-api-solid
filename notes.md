@@ -246,3 +246,7 @@ GymPass style app.
 - Nós podemos usar novos schemas para nossos testes;
 - Vide alterações no prisma-test-environment para gerar novos schemas e portanto,
   bases de dados novas para teste;
+
+## Começando configurações para execução de testes e2e
+
+- `npm install supertest -D` e `npm i @types/supertest -D`
