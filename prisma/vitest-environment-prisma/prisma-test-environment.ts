@@ -3,11 +3,14 @@ import { Environment } from 'vitest'
 
 export default <Environment><unknown>{
   name: 'prisma',
+  transformMode: 'ssr',
   async setup() {
     console.log('Executou')
 
     return {
-      teardown() { },
+      async teardown() {
+        console.log('Teardown')
+      },
     }
   },
 }

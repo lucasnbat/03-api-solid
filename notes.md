@@ -177,3 +177,14 @@ GymPass style app.
   - Os casos de uso são as formas mais puras da aplicação, lógicas independentes;
 - Tem módulo de JWT para fastify
   - `npm i @fastify/jwt`
+
+## Testes E2E
+
+- Precisam bater no BD para que nós possamos simular bem as ações do usuário;
+- Um teste não pode interferir no outro (fazer fatias isoladas para testes, switch de testes, algo assim)
+- Ambientes de testes são possíveis para criar variaveis .env especificos (de banco, até migrations, etc)
+- ir na pasta prisma, criar uma pasta de enviromnet e criar com `npm init -y`
+- Depois, basta configurar a função Environment no prisma-test-environment;
+- Depois, no vite.config.ts, você configura quais arquivos vão usar o referido ambiente de edesenvolvimento (no caso, o nome dele é prisma)
+- vá na pasta vitest-environment-prisma e dê um `npm link` para cirar um rep local;
+- Depois volta na pasta geral do projeto e da um `npm link vitest-environment-prisma` para você conseguir rodar a configuração de ambientes que você fez rodar globalmente;
