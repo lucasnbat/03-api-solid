@@ -12,6 +12,7 @@
     "build": "tsup src --out-dir build",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx,.css,.scss --fix",
     "test:e2e": "vitest run --dir src/http",
+    "test:e2e:watch": "vitest --dir src/http",
     "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:install-prisma-environment": "npm link vitest-environment-prisma"
