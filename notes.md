@@ -250,3 +250,8 @@ GymPass style app.
 ## Começando configurações para execução de testes e2e
 
 - `npm install supertest -D` e `npm i @types/supertest -D`
+- Testes e2e testam rotas de sucesso, globais, da aplicação;
+  - Não é criado para verificar se um regex especifico está 
+    funcionando;
+  - Precisa ter poucos e2e que testam de ponta a ponta (fluxos
+    de autenticação, etc)
