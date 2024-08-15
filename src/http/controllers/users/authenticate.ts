@@ -46,7 +46,28 @@ export async function authenticate(
         },
       },
     )
-    return reply.status(200).send({ token })
+
+    const refreshToken = await reply.jwtSign(
+      {}, // payload
+      {
+        sign: {
+          sub: user.id,
+          expiresIn: '7d'
+        },
+      },
+    )
+
+    return reply
+      .setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true, // Usa HTTPS para cifrar
+        sameSite: true, // Acessível somente no site
+        httpOnly: true, // Acessível somente para o backend
+      })
+      .status(200)
+      .send({
+        token
+      })
   } catch (err) {
     if (err instanceof InvalidCredentialsError) {
       return reply.status(400).send({ message: err.message }) // conflict error code

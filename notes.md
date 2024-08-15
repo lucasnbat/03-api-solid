@@ -255,3 +255,21 @@ GymPass style app.
     funcionando;
   - Precisa ter poucos e2e que testam de ponta a ponta (fluxos
     de autenticação, etc)
+
+# Invalidação de token
+
+- Pode ser feito:
+  - com iat anotado para comparar e ver se foi criado a mais 
+    tempo que o permitido e se for o caso, bloqueia;
+  - Refresh token: gera um token para uso e um segundo token para 
+    fazer o refresh e re-gerar o token de uso;
+      - O token de uso, original, é visível e usado pelo front,
+        enquanto o segundo (para re-criar o token de uso) é invisível
+- Para trabalhar com cookies: `npm i @fastify/cookie`
+  - Parâmetros de segurança para cookies:
+    -  .setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true, // Usa HTTPS para cifrar
+        sameSite: true, // Acessível somente no site
+        httpOnly: true, // Acessível somente para o backend
+      })
