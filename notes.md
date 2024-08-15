@@ -273,3 +273,7 @@ GymPass style app.
         sameSite: true, // Acessível somente no site
         httpOnly: true, // Acessível somente para o backend
       })
+
+## RBAC = Role Base Authorization Control
+
+- Controle de acesso baseado em função/cargo do usuário;

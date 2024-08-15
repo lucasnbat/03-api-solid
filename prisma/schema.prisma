@@ -13,11 +13,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Lista simples
+enum Role {
+  ADMIN
+  MEMBER
+}
+
 model User {
   id           String    @id @default(uuid())
   name         String
   email        String    @unique
   passord_hash String
+  role         Role      @default(MEMBER)
   created_at   DateTime  @default(now())
   // linha abaixo só serve para que prisma entenda que existe relação
   checkIns     CheckIn[]
