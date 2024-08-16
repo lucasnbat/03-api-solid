@@ -277,3 +277,11 @@ GymPass style app.
 ## RBAC = Role Base Authorization Control
 
 - Controle de acesso baseado em função/cargo do usuário;
+
+# Continous Integration
+
+- Verificar, continuamente, os códigos que chegam ao rep.
+  em questão de segurança, testes e etc;
+- CD : é continuous deployment é o processo de quando receber
+  o código validado, fazer deploy automático;
+- workflows: são comandos. uma esteira de comandos
