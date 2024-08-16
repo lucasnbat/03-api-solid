@@ -9,8 +9,10 @@ export async function refresh(
   /* O jwtVerify também disponibiliza os dados do token (user.sub) */
   await request.jwtVerify({ onlyCookie: true })
 
+  const { role } = request.user
+
   const token = await reply.jwtSign(
-    {}, // payload
+    { role }, // payload
     {
       sign: {
         sub: request.user.sub,
@@ -19,7 +21,7 @@ export async function refresh(
   )
 
   const refreshToken = await reply.jwtSign(
-    {}, // payload
+    { role }, // payload
     {
       sign: {
         sub: request.user.sub,

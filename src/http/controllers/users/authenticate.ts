@@ -39,7 +39,9 @@ export async function authenticate(
      * não coloque info. sensíveis do user no payload
      */
     const token = await reply.jwtSign(
-      {}, // payload
+      {
+        role: user.role,
+      }, // payload
       {
         sign: {
           sub: user.id,
@@ -48,7 +50,9 @@ export async function authenticate(
     )
 
     const refreshToken = await reply.jwtSign(
-      {}, // payload
+      {
+        role: user.role,
+      }, // payload
       {
         sign: {
           sub: user.id,
