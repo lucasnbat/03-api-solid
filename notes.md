@@ -285,3 +285,4 @@ GymPass style app.
 - CD : é continuous deployment é o processo de quando receber
   o código validado, fazer deploy automático;
 - workflows: são comandos. uma esteira de comandos
+- modificação básica para testar **
