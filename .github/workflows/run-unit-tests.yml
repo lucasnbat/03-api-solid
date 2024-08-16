@@ -1,0 +1,17 @@
+name: Run Unit Tests
+
+on: [push] # ao dar push...
+
+jobs:
+  run-unit-tests:
+    name: Run Unit Tests # executa esse script
+    runs-on: ubuntu-latest # usando ultima versão do ubuntu
+
+    steps: # com os seguintes passos
+      - uses: actions/checkout@v3 # baixa o código todo
+      - uses: actions/setup-node@v3 # inicia o setup nodejs
+        with:
+          node-version: 18 # na versão 18
+          cache: 'npm' # usa o package manager para gerar cache das dep. e reaproveitar para novo workflow
+      - run: npm ci # npm instal... mas a sigla é "ci" pois ele não pede config ao executar
+      - run: npm run test # executa testes unitários (usa script do package.json)
