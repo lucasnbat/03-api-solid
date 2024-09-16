@@ -21,17 +21,17 @@ GymPass style app.
 - [x] Usuário não deve poder fazer 2 check-ins no mesmo dia;
 - [x] Usuário não deve poder fazer check-ins se não estiver perto (100m) da academia;
 - [x] Check-in só deve poder ser validado até 20 minutos após criado;
-- [ ] Check-in só deve poder ser validado por administradores;
-- [ ] Academia só deve poder ser cadastrada por administradores;
+- [x] Check-in só deve poder ser validado por administradores;
+- [x] Academia só deve poder ser cadastrada por administradores;
 
 ## RNFs (Requisitos não-funcionais)
 
 - [x] Senha do usuário deve estar criptografada;
 - [x] Os dados da aplicação devem estar persistidos em um banco PostgreSQL;
 - [x] Todas listas de dados devem estar paginadas com 20 items por página; 
-- [ ] O usuário deve ser identificado por um JWT (Json Web Token);
-  
-# Configuração 
+- [x] O usuário deve ser identificado por um JWT (Json Web Token);
+
+# Configuração
 
 ## Instalações iniciais
 
@@ -69,12 +69,14 @@ GymPass style app.
 ### Configuração de alias de importação
 
 - No seu tsconfig.json...
-
+  
   > "baseUrl": "./", /* Specify the base directory to resolve non-relative module names. */
   >    "paths": {
+  > 
   >      "@/*": [
   >        "./src/*"
   >      ]
+  > 
   >    }, /* Specify a set of entries that re-map imports to >additional lookup locations. */
 
 - Setup completo.
@@ -120,7 +122,7 @@ GymPass style app.
 ## Relacionamentos
 
 - 1 - 1 = um dado se relaciona apeans com um unico dado de outra, isso poderia estar
- na mesma tabela mas pode ser separado;
+  na mesma tabela mas pode ser separado;
 - 1 - N = um dado pode relacionar com varios de outra tabela (1 usuário - Vários checkins)
 - N - N = uma dado pode ter associação a varios dados de outra tabela e essa tabela pode
   ter dado com vários dados da inicial associados;
@@ -155,8 +157,8 @@ GymPass style app.
 ## Esclarecendo interação UsersRep x PrismaUsersRep x Register
 
 - register.ts (RegisterUseCase) é o arquivo que contém as regras de negócio do que
- fazer com o banco; ele recebe uma instância de PrismaUsersRep para usar as ferramentas
- do prisma para realizar as op. da regra de negócio;
+  fazer com o banco; ele recebe uma instância de PrismaUsersRep para usar as ferramentas
+  do prisma para realizar as op. da regra de negócio;
 - PrismaUsersRep é um repositório que contém a regra da regra de negócio. Ele faz as op.
   que o register.ts diz usando a sintaxe e ferramentas do Prisma. O motivo dele existir
   é para concentrar as lógicas de Prisma em apenas um arquivo facilmente substituível
@@ -226,13 +228,13 @@ GymPass style app.
     "test:watch": "vitest --dir src/use-cases",
     ...
     "test:e2e": "vitest run --dir src/http"
-  },
+    },
 - Temos que configurar um pretest tambem para executar antes dos testes
   - no npm, sempre o script com "pre" no inicio é executado antes dos oturos;
   - logo:
     - {"pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
-    "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
-    "test:install-prisma-environment": "npm link vitest-environment-prisma"}
+      "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
+      "test:install-prisma-environment": "npm link vitest-environment-prisma"}
       - esse script usa o npm-run-all (lib) por meio do run-s (run sequencially) que roda
         o script conforme o SO usado pela maquina que está rodando o sistema;
       - o pretest executa os dois scripts abaixo
@@ -263,15 +265,15 @@ GymPass style app.
     tempo que o permitido e se for o caso, bloqueia;
   - Refresh token: gera um token para uso e um segundo token para 
     fazer o refresh e re-gerar o token de uso;
-      - O token de uso, original, é visível e usado pelo front,
-        enquanto o segundo (para re-criar o token de uso) é invisível
+    - O token de uso, original, é visível e usado pelo front,
+      enquanto o segundo (para re-criar o token de uso) é invisível
 - Para trabalhar com cookies: `npm i @fastify/cookie`
   - Parâmetros de segurança para cookies:
-    -  .setCookie('refreshToken', refreshToken, {
-        path: '/',
-        secure: true, // Usa HTTPS para cifrar
-        sameSite: true, // Acessível somente no site
-        httpOnly: true, // Acessível somente para o backend
+    - .setCookie('refreshToken', refreshToken, {
+       path: '/',
+       secure: true, // Usa HTTPS para cifrar
+       sameSite: true, // Acessível somente no site
+       httpOnly: true, // Acessível somente para o backend
       })
 
 ## RBAC = Role Base Authorization Control
